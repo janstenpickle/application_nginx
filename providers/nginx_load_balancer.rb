@@ -49,7 +49,9 @@ action :before_deploy do
     notifies :reload, resources(:service => 'nginx')
   end
 
-  nginx_site "#{new_resource.application.name}.conf"
+  nginx_site "#{new_resource.application.name}.conf" do
+    template nil
+  end
 
   nginx_site "default" do
     enable false
